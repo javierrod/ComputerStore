@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Bill {
+	//queloque mundo
 	private String ID;
 	private float totalAmount;
 	private ArrayList<Components> items;
