@@ -106,17 +106,28 @@ public class Store {
 		int i;
 		for(i=0; i < pBill.getItems().size() ; i++ ){
 			String serialNumber = pBill.getItems().get(i).getSerialNumber();
-			findComponent(serialNumber);
+	//		int boughtCant = pBill.ge
+			findAndDecreaseCant(serialNumber);
 		}
 		this.Bills.add(pBill);
 	}
+	public void addUnpaidBill(Bill pBill){
+		if(pBill.isPaid() == false)
+			this.Bills.add(pBill);
+		else
+			addPaidBill(pBill);
+	}
 	
-	public Components findComponent(String pSerialNumber){
+	public void findAndDecreaseCant(String pSerialNumber){
 		int i=0;
-		while(i<this.components.size() && !this.components.get(i).getSerialNumber().equalsIgnoreCase(pSerialNumber))
-			i++;
 		
-		return this.components.get(i);	
+		while(i<this.components.size() && !this.components.get(i).getSerialNumber().equalsIgnoreCase(pSerialNumber)){
+			i++;
+		}
+		
+		this.components.get(i).availableCant -= 1;
+		
+	//	return this.components.get(i);	
 	}
 	
 	public float ClosingBalance(Date today){
@@ -129,22 +140,38 @@ public class Store {
 		return sum;
 	}
 	
-	public void DecreaseCant(){
-		
-	}
-	
-	
-	/*
-	public float GainOfStore(Date first, Date second){
+	public float ClosingBalance(Date date1, Date date2){
 		float sum =0;
-		for(int i=0; i<payedBills.size();i++){
-			if(payedBills.get(i).getDate() >= first && payedBills.get(i).getDate()<=second){
-				sum+= payedBills.get(i).GainPerBill();
+		if(date2.getTime() > date1.getTime()){
+			for(int i=0; i< Bills.size();i++){
+				if(Bills.get(i).getDate().getTime() >= date1.getTime() && Bills.get(i).getDate().getTime() <= date2.getTime())
+					sum+= Bills.get(i).getTotalAmount();
 			}
 		}
 		return sum;
-	*/
+	}
 	
+	public float GainOfStore(Date today){
+		float sum =0;
+		for(int i=0; i<Bills.size();i++){
+			if(Bills.get(i).getDate().getTime() == today.getTime()){
+				sum+= Bills.get(i).GainPerBill();
+			}
+		}
+		return sum;
+	}
+	
+	public float GainOfStore(Date date1, Date date2){
+		float sum =0;
+		if(date2.getTime() > date1.getTime()){
+			
+			for(int i=0; i< Bills.size();i++){
+				if(Bills.get(i).getDate().getTime() >= date1.getTime() && Bills.get(i).getDate().getTime() <= date2.getTime())
+					sum+= Bills.get(i).GainPerBill();
+			}	
+		}
+		return sum;
+	}
 	
 
 }
