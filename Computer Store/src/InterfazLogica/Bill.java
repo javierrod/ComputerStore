@@ -1,21 +1,21 @@
 package InterfazLogica;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Bill {
 	private String ID;
 	private float totalAmount;
 	private ArrayList<Components> items;
-	private Date date;
+	private Calendar date;
 	private Client client;
 	private boolean paid;
 	
-	public Bill(String iD, float totalAmount, ArrayList<Components> items,
-			Date date, Client client, boolean payed) {
+	public Bill(String iD, ArrayList<Components> items,
+			Calendar date, Client client, boolean payed) {
 		super();
 		ID = iD;
-		this.totalAmount = totalAmount;
 		this.items = items;
 		this.date = date;
 		this.client = client;
@@ -31,7 +31,7 @@ public class Bill {
 	}
 
 	public float getTotalAmount() {
-		return totalAmount;
+		return this.totalAmount = TotalAmount();
 	}
 
 	public void setTotalAmount(float totalAmount) {
@@ -46,11 +46,11 @@ public class Bill {
 		this.items = items;
 	}
 
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 
@@ -91,12 +91,13 @@ public class Bill {
 		}
 	}
 	
-	public float TotalAmount(){
+	private float TotalAmount(){
 		float sum = 0;
 		for(int i=0; i<items.size();i++){
 			sum += items.get(i).getPriceSale();
 		}
 		return sum;
+		
 	}
 	
 	public float GainPerBill(){
