@@ -18,21 +18,30 @@ public class Pruebas {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Store store = Store.getIntance();
+		
 		ArrayList<Components> hehe = new ArrayList<Components>();
 		
 		HardDrive a = new HardDrive("1234", "eric", "67", 1000, 1500, 20, true, "1TB");
 		HardDrive e = new HardDrive("1235", "Juan", "67", 1000, 1500, 18, true, "1TB");
 		HardDrive i = new HardDrive("1236", "jeen", "67", 1000, 1500, 20, true, "1TB");
 		HardDrive o = new HardDrive("1237", "jje", "67", 1000, 1500, 10, true, "1TB");
-
+		
 		hehe.add(a);
 		hehe.add(e);
 		hehe.add(i);
 		hehe.add(o);
-	//	store.addHardDrive("1237", "jje", "67", 1000, 1500, 20, true, "1TB");
-		store.setComponents(hehe);
+		
+		store.addHardDrive("1234", "eric", "67", 1000, 1500, 20, true, "1TB");
+		store.addHardDrive("1235", "Juan", "67", 1000, 1500, 18, true, "1TB");
+		store.addHardDrive("1236", "jeen", "67", 1000, 1500, 20, true, "1TB");
+		store.addHardDrive("1237", "jje", "67", 1000, 1500, 10, true, "1TB");
+
+	//	store.setComponents(hehe);
 	//	System.out.println(store.getComponents().get(3).getBrand());
-		store.addHardDrive("1238", "jje", "67", 1000, 1500, 10, true, "1TB");		
+	//	store.addHardDrive("1238", "jje", "67", 1000, 1500, 10, true, "1TB");
+	//	store.addComponents(a);
+		
+		System.out.println(store.getComponents().size());
 		
 		Calendar c1 = GregorianCalendar.getInstance();
 		Calendar c2 = GregorianCalendar.getInstance();
@@ -44,21 +53,25 @@ public class Pruebas {
 		
 		Bill bill1 = new Bill("1213", hehe, c1, client, true);
 		Bill bill2 = new Bill("2335", hehe, c2, client, true);
+		
+		/*
 		ArrayList<Bill> bills = new ArrayList<Bill>();
 		bills.add(bill1);
-		bills.add(bill2);
-		store.setBills(bills);
+		bills.add(bill2); 
+		
+		store.setBills(bills); */
 		
 		store.addPaidBill(bill1);
 		store.addPaidBill(bill2);
 		store.addPaidBill(bill2);
 		
-		System.out.println(store.getBills().size());
-		float T = store.ClosingBalance(c2);
-		
-      	System.out.println(T);
-      	System.out.println(store.GainOfStore(c1));
-      	System.out.println(store.getComponents().get(3).getAvailableCant());
+		System.out.println(store.getBills().size());		
+      	System.out.println(store.ClosingBalance(c1, c2));
+		System.out.println(store.GainOfStore(c1,c2));	
+		System.out.println(((HardDrive)(store.getComponents().get(0))).getCapacity());
+
+  //    	System.out.println(store.GainOfStore(c1));
+      	//System.out.println(((HardDrive)(store.getComponents().get(3))).g);
   //    System.out.println(store.getComponents().get(4).g);
 	
 	}

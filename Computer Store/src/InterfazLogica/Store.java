@@ -5,21 +5,24 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Store {
-	private static ArrayList<Components> components;
-	private static ArrayList<Bill> Bills;
-	private static ArrayList<Client> clients;
+	/*
+	 * QUITE LO DE STATIC, YA QUE SEGUN EL PPROFESOR EL CONSTRUCTOR DEBE DE SER VACIO.
+	 */
+	private ArrayList<Components> components;
+	private ArrayList<Bill> Bills;
+	private ArrayList<Client> clients;
 	private static Store store = null;
 	
-	private Store(ArrayList<Components> components, ArrayList<Bill> Bills, ArrayList<Client> clients) {
+	private Store() {
 		super();
-		Store.components = components;
-		Store.Bills = Bills;
-		Store.clients = clients;
+		components=new ArrayList<Components>();
+		Bills=new ArrayList<Bill>();
+		clients=new ArrayList<Client>();
 	}
 	
 	public static Store getIntance(){
 		if(store==null){
-			store = new Store(new ArrayList<Components>(), Bills, clients);
+			store = new Store();
 		}
 		return store;
 	}
@@ -28,26 +31,27 @@ public class Store {
 		return components;
 	}
 
-	public static void setComponents(ArrayList<Components> components) {
-		Store.components = components;
+	public void setComponents(ArrayList<Components> components) {
+		this.components = components;
 	}
 
-	public static void setBills(ArrayList<Bill> Bills) {
-		Store.Bills = Bills;
+	public void setBills(ArrayList<Bill> Bills) {
+		this.Bills = Bills;
 	}
 
-	public static ArrayList<Bill> getBills() {
+	public ArrayList<Bill> getBills() {
 		return Bills;
 	}
 
-	public static ArrayList<Client> getClients() {
+	public ArrayList<Client> getClients() {
 		return clients;
 	}
 
-	public static void setClients(ArrayList<Client> clients) {
-		Store.clients = clients;
+	public void setClients(ArrayList<Client> clients) {
+		this.clients = clients;
 	}
-
+	
+	/*
 	public static Store getStore() {
 		return store;
 	}
@@ -55,9 +59,10 @@ public class Store {
 	public static void setStore(Store store) {
 		Store.store = store;
 	}
+	*/
 	
 	public void addComponents(Components components){
-		this.getComponents().add(components);
+		this.components.add(components);
 	}
 	
 	public void addRam(String pSerialNumber, String pBrand, String pModel,
